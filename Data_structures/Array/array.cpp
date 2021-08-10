@@ -1,12 +1,34 @@
-#include <iostream>
 #include "array.hpp"
 
 template <typename T>
 myArray<T>::myArray(int capacity = 2)
 {
-	this->arr = (T *)malloc(capacity);
+	this->arr = new T(capacity);
 	this->size = 0;
 	this->capacity = capacity;
+}
+
+template <typename T>
+myArray<T>::~myArray()
+{
+	free(this->arr);
+	this->size = 0;
+}
+
+template <typename T>
+void myArray<T>::_shiftLeft(const int &index)
+{
+	for (int i = index; i < this->size - 1; i++)
+		this->arr[i] = this->arr[i + 1];
+	this->arr = (T *)realloc(this->arr, --this->size);
+}
+
+template <typename T>
+void myArray<T>::_shiftRight(const int &index)
+{
+	this->arr = (T *)realloc(this->arr, ++this->size);
+	for (int i = this->size - 2; i >= index; i--)
+		this->arr[i + 1] = this->arr[i];
 }
 
 template <typename T>
@@ -50,21 +72,6 @@ T myArray<T>::insert(const T &item, const int &index)
 	return 0;
 }
 
-template <typename T>
-void myArray<T>::_shiftLeft(const int &index)
-{
-	for (int i = index; i < this->size - 1; i++)
-		this->arr[i] = this->arr[i + 1];
-	this->arr = (T *)realloc(this->arr, --this->size);
-}
-
-template <typename T>
-void myArray<T>::_shiftRight(const int &index)
-{
-	this->arr = (T *)realloc(this->arr, ++this->size);
-	for (int i = this->size - 2; i >= index; i--)
-		this->arr[i + 1] = this->arr[i];
-}
 
 template <typename T>
 int myArray<T>::getLength()
@@ -78,11 +85,4 @@ T myArray<T>::get(int index)
 	if (index < this->size && index >= 0)
 		return this->arr[index];
 	return 0;
-}
-
-template <typename T>
-myArray<T>::~myArray()
-{
-	free(this->arr);
-	this->size = 0;
 }
