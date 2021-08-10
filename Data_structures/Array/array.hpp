@@ -1,3 +1,5 @@
+template <typename T>
+class myArray;
 
 template <typename T>
 class myArray
@@ -5,7 +7,8 @@ class myArray
 private:
 	int size, capacity;
 	T *arr;
-	void _autoSrink();
+	int _autoExpand();
+	int _autoShrink();
 	void _shiftLeft(const int &index);
 	void _shiftRight(const int &index);
 
@@ -17,5 +20,5 @@ public:
 	T del(const int &index);
 	T get(int index);
 	T insert(const T &item, const int &index);
-	int getLength();
+	int length();
 };

@@ -16,7 +16,7 @@ main:
 
 array:
 	@echo Compiling: $@
-	@mkdir -p $(OUT_DIR)
+	@mkdir -p $(LIB_DIR)
 	@g++ -c -o $@.o $@.cpp
 	@gcc -shared -o $(LIB_DIR)/$@.so $@.o
 	@rm -f $@.o
