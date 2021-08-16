@@ -11,8 +11,7 @@ myArray<T>::myArray(int capacity)
 template <typename T>
 myArray<T>::~myArray()
 {
-	delete this->arr;
-	cout << "Delete destructor current" << endl;
+	delete [] this->arr;
 	this->size = 0;
 }
 
@@ -24,8 +23,7 @@ int myArray<T>::_autoExpand()
 		T *tmpArr = new T(2 * size);
 		for (int i = 0; i < this->size; i++)
 			tmpArr[i] = this->arr[i];
-		cout << "Delete current" << endl;
-		delete this->arr;
+		delete [] this->arr;
 		this->arr = tmpArr;
 	}
 	return this->capacity;
