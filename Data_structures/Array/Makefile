@@ -1,23 +1,49 @@
-ifndef CUR_DIR
-CUR_DIR := $(shell pwd)
+ifndef OUT_DIR
+OUT_DIR			:= $(shell pwd)/output
 endif
 
-ifndef OUT_DIR
-OUT_DIR := $(CUR_DIR)/output
+ifndef INC_DIR
+INC_DIR			:= "$(shell pwd)/inc"
 endif
 
 ifndef LIB_DIR
-LIB_DIR := $(CUR_DIR)/lib
+LIB_DIR			:= "$(shell pwd)/lib"
 endif
 
-all:array main
+ifndef TMP_DIR
+TMP_DIR			:= "$(shell pwd)/tmp"
+endif
 
-main:
+ifndef SRC_DIR
+SRC_DIR			:= "$(shell pwd)/src"
+endif
 
-array:
+ifndef MKDIR
+MKDIR			:= mkdir
+endif
+
+.PHONY: all
+
+all: clean main
+
+unit_test: src/main.cpp libarray
+
+main: src/main.cpp libarray
 	@echo Compiling: $@
-	@mkdir -p $(LIB_DIR)
-	@g++ -c -o $@.o $@.cpp
-	@gcc -shared -o $(LIB_DIR)/$@.so $@.o
-	@rm -f $@.o
+	@$(MKDIR) -p $(OUT_DIR)
+	@g++ $< -I$(INC_DIR) -L$(LIB_DIR) -larray -o $(OUT_DIR)/$@
 
+libarray: array.o
+	@echo Compiling: $@
+	@$(echo $(LIB_DIR)/$@.a)
+	@$(MKDIR) -p $(LIB_DIR)
+	@ar crs lib/$@.a $(join tmp/,$^)
+
+array.o: src/array.cpp inc/array.hpp
+	@echo Compiling: $@
+	@$(MKDIR) -p $(TMP_DIR)
+	@g++ -c $< -o "$(TMP_DIR)/$@"
+
+clean:
+	@echo Clean all file
+	@rm -rf $(TMP_DIR) $(LIB_DIR)

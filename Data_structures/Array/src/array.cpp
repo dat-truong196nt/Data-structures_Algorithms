@@ -1,7 +1,7 @@
-#include "array.hpp"
+#include "../inc/array.hpp"
 
 template <typename T>
-myArray<T>::myArray(int capacity = 2)
+myArray<T>::myArray(int capacity)
 {
 	this->arr = new T(capacity);
 	this->size = 0;
@@ -12,16 +12,19 @@ template <typename T>
 myArray<T>::~myArray()
 {
 	delete this->arr;
+	cout << "Delete destructor current" << endl;
 	this->size = 0;
 }
 
 template <typename T>
 int myArray<T>::_autoExpand()
 {
-	if (size > 80*capacity/100) {
+	if (size > 0.8 * capacity)
+	{
 		T *tmpArr = new T(2 * size);
 		for (int i = 0; i < this->size; i++)
 			tmpArr[i] = this->arr[i];
+		cout << "Delete current" << endl;
 		delete this->arr;
 		this->arr = tmpArr;
 	}
@@ -31,16 +34,17 @@ int myArray<T>::_autoExpand()
 template <typename T>
 int myArray<T>::_autoShrink()
 {
-	if (size < 20*capacity/100) {
+	if (size < 0.2 * capacity)
+	{
 		T *tmpArr = new T(2 * size);
 		for (int i = 0; i < this->size; i++)
 			tmpArr[i] = this->arr[i];
+		cout << "Delete current" << endl;
 		delete this->arr;
 		this->arr = tmpArr;
 	}
 	return this->capacity;
 }
-
 
 template <typename T>
 void myArray<T>::_shiftLeft(const int &index)
@@ -85,6 +89,7 @@ T myArray<T>::del(const int &index)
 		this->size--;
 		return item;
 	}
+	throw "Error: Index (%d) is outside array!", index;
 	return 0;
 }
 
@@ -99,9 +104,9 @@ T myArray<T>::insert(const T &item, const int &index)
 		this->size++;
 		return item;
 	}
+	// throw runtime_error("Error: Index (%d) is outside array!", index);
 	return 0;
 }
-
 
 template <typename T>
 int myArray<T>::length()
@@ -114,5 +119,19 @@ T myArray<T>::get(int index)
 {
 	if (index < this->size && index >= 0)
 		return this->arr[index];
+	// throw runtime_error("Error: Index (%d) is outside array!", index);
 	return 0;
 }
+
+template <typename T>
+void myArray<T>::print()
+{
+	for (int i = 0; i < this->size; i++)
+	{
+		cout << this->arr[i] << " ";
+	}
+	cout << endl;
+}
+
+template class myArray<int>;
+template class myArray<float>;

@@ -1,6 +1,10 @@
-template <typename T>
-class myArray;
+#ifndef __ARRAY_H__
+#define __ARRAY_H__
 
+#include <string>
+#include <iostream>
+
+using namespace std;
 template <typename T>
 class myArray
 {
@@ -21,4 +25,7 @@ public:
 	T get(int index);
 	T insert(const T &item, const int &index);
 	int length();
+	void print();
 };
+
+#endif
