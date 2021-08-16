@@ -45,5 +45,5 @@ array.o: src/array.cpp inc/array.hpp
 	@g++ -c $< -o "$(TMP_DIR)/$@"
 
 clean:
-	@echo Clean all file
-	@rm -rf $(TMP_DIR) $(LIB_DIR)
+	@echo Clean build folders
+	@ @rm -rf $(TMP_DIR) $(LIB_DIR) $(OUT_DIR)
