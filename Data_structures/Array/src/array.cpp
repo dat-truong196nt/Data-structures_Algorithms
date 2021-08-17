@@ -106,7 +106,7 @@ T myArray<T>::insert(const T &item, const int &index)
 		this->size++;
 		return item;
 	}
-	// throw runtime_error("Error: Index (%d) is outside array!", index);
+	throw "Error: Index (%d) is outside array!", index;
 	return 0;
 }
 
@@ -121,7 +121,7 @@ T myArray<T>::get(int index)
 {
 	if (index < this->size && index >= 0)
 		return this->arr[index];
-	// throw runtime_error("Error: Index (%d) is outside array!", index);
+	throw "Error: Index (%d) is outside array!", index;
 	return 0;
 }
 
