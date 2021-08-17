@@ -72,8 +72,12 @@ template <typename T>
 T myArray<T>::pop()
 {
 	_autoShrink();
-	T itemPop = this->arr[--this->size];
-	return itemPop;
+	if (this->size > 0) {
+		T itemPop = this->arr[--this->size];
+		return itemPop;
+	}
+	throw "Error: array is empty";
+	return 0;
 }
 
 template <typename T>
