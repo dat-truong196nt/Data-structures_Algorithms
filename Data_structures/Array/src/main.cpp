@@ -18,7 +18,7 @@ void testPop(class myArray<T> &arr)
 	int preLen = arr.length();
 	T lastValue = arr.get(arr.length() - 1);
 	arr.pop();
-	if (arr.length() != preLen + 1)
+	if (arr.length() != preLen - 1)
 		throw "Failed to pop last item (" + to_string(lastValue) + ") out off array";
 }
 
