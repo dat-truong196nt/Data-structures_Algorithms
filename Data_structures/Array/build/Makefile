@@ -1,21 +1,21 @@
 ifndef OUT_DIR
-OUT_DIR			:= $(shell pwd)/output
+OUT_DIR			:= $(shell pwd)/../output
 endif
 
 ifndef INC_DIR
-INC_DIR			:= "$(shell pwd)/inc"
+INC_DIR			:= "$(shell pwd)/../inc"
 endif
 
 ifndef LIB_DIR
-LIB_DIR			:= "$(shell pwd)/lib"
+LIB_DIR			:= "$(shell pwd)/../lib"
 endif
 
 ifndef TMP_DIR
-TMP_DIR			:= "$(shell pwd)/tmp"
+TMP_DIR			:= "$(shell pwd)/../tmp"
 endif
 
 ifndef SRC_DIR
-SRC_DIR			:= "$(shell pwd)/src"
+SRC_DIR			:= "$(shell pwd)/../src"
 endif
 
 ifndef MKDIR
@@ -26,9 +26,9 @@ endif
 
 all: clean main
 
-unit_test: src/main.cpp libarray
+unit_test: ../src/main.cpp libarray
 
-main: src/main.cpp libarray
+main: ../src/main.cpp libarray
 	@echo Compiling: $@
 	@$(MKDIR) -p $(OUT_DIR)
 	@g++ -std=c++11 $< -I$(INC_DIR) -L$(LIB_DIR) -larray -o $(OUT_DIR)/$@
@@ -37,9 +37,9 @@ libarray: array.o
 	@echo Compiling: $@
 	@$(echo $(LIB_DIR)/$@.a)
 	@$(MKDIR) -p $(LIB_DIR)
-	@ar crs lib/$@.a $(join tmp/,$^)
+	@ar crs ../lib/$@.a $(join ../tmp/,$^)
 
-array.o: src/array.cpp inc/array.hpp
+array.o: ../src/array.cpp ../inc/array.hpp
 	@echo Compiling: $@
 	@$(MKDIR) -p $(TMP_DIR)
 	@g++ -c $< -o "$(TMP_DIR)/$@"
