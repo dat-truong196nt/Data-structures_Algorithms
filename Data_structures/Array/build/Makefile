@@ -26,8 +26,6 @@ endif
 
 all: clean main
 
-unit_test: ../src/main.cpp libarray
-
 main: ../src/main.cpp libarray
 	@echo Compiling: $@
 	@$(MKDIR) -p $(OUT_DIR)
@@ -46,4 +44,4 @@ array.o: ../src/array.cpp ../inc/array.hpp
 
 clean:
 	@echo Clean build folders
-	@ @rm -rf $(TMP_DIR) $(LIB_DIR) $(OUT_DIR)
+	@rm -rf $(TMP_DIR) $(LIB_DIR) $(OUT_DIR)
