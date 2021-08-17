@@ -31,7 +31,7 @@ unit_test: src/main.cpp libarray
 main: src/main.cpp libarray
 	@echo Compiling: $@
 	@$(MKDIR) -p $(OUT_DIR)
-	@g++ $< -I$(INC_DIR) -L$(LIB_DIR) -larray -o $(OUT_DIR)/$@
+	@g++ -std=c++11 $< -I$(INC_DIR) -L$(LIB_DIR) -larray -o $(OUT_DIR)/$@
 
 libarray: array.o
 	@echo Compiling: $@
