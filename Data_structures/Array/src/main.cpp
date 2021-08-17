@@ -27,9 +27,9 @@ int	main()
 	class myArray<int> arr;
 	try {
 		testPushing(arr, 20);
-		arr.print();
 		testPop(arr);
-	} catch (string ex) {
+		arr.print();
+	} catch (const char *ex) {
 		cout << ex << endl;
 	}
 	return 0;
