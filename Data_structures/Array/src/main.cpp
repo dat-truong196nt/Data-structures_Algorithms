@@ -1,13 +1,11 @@
 #include <iostream>
 #include <array.hpp>
-#include <string>
 
 #define SUCCESS 0
 #define FAIL -1
-using namespace std;
 
 template <typename T>
-void testPushing(class myArray<T> arr, T input)
+void testPushing(class myArray<T> &arr, T input)
 {
 	arr.push(input);
 	if (arr.get(arr.length() - 1) != input)
@@ -15,14 +13,13 @@ void testPushing(class myArray<T> arr, T input)
 }
 
 template <typename T>
-void testPop(class myArray<T> arr)
+void testPop(class myArray<T> &arr)
 {
 	int preLen = arr.length();
 	T lastValue = arr.get(arr.length() - 1);
 	arr.pop();
-	if (arr.length() != preLen + 1);
+	if (arr.length() != preLen + 1)
 		throw "Failed to pop last item (" + to_string(lastValue) + ") out off array";
-
 }
 
 int	main()
@@ -31,9 +28,9 @@ int	main()
 	try {
 		testPushing(arr, 20);
 		arr.print();
-		// testPop(arr);
-	} catch (const char* ex) {
-		cerr << ex << endl;
+		testPop(arr);
+	} catch (string ex) {
+		cout << ex << endl;
 	}
 	return 0;
 }
