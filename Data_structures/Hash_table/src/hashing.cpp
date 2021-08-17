@@ -1,4 +1,4 @@
-#include "inc/hash_table.hpp"
+#include "../inc/hashing.hpp"
 
 template <typename T>
 hashTable<T>::hashTable(int size)
