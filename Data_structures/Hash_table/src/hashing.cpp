@@ -30,3 +30,4 @@ T hashTable<T>::get(const string &key) {
 
 template class hashTable<int>;
 template class hashTable<float>;
+template class hashTable<string>;
