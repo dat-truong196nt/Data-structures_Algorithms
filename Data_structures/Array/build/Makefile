@@ -24,7 +24,7 @@ endif
 
 .PHONY: all
 
-all: clean main
+all: main clean
 
 main: ../src/main.cpp libarray
 	@echo Compiling: $@
@@ -44,4 +44,4 @@ array.o: ../src/array.cpp ../inc/array.hpp
 
 clean:
 	@echo Clean build folders
-	@rm -rf $(TMP_DIR) $(LIB_DIR) $(OUT_DIR)
+	@rm -rf $(TMP_DIR) $(LIB_DIR)
