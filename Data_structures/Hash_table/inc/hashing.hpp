@@ -3,6 +3,14 @@
 using namespace std;
 
 template <typename T>
+struct _hashNode {
+	struct _hashNode *next;
+	pair<string, T> value;
+};
+template <typename T>
+using hashNode = struct _hashNode<T>;
+
+template <typename T>
 class hashTable
 {
 private:
