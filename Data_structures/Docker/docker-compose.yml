@@ -12,4 +12,11 @@ services:
         image: data_struct
         container_name: Hash_table
         volumes:
-            - "../Array:/app"
+            - "../Hash_table:/app"
+    Linked_list:
+        depends_on:
+            - Array
+        image: data_struct
+        container_name: Linked_list
+        volumes:
+            - "../Linked_list:/app"
