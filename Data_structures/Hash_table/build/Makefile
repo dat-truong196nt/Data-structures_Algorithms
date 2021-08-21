@@ -24,7 +24,7 @@ endif
 
 .PHONY: all
 
-all: clean main
+all: main clean
 
 main: ../src/main.cpp libhashing
 	@echo Compiling: $@
@@ -44,4 +44,4 @@ hashing.o: ../src/hashing.cpp ../inc/hashing.hpp
 
 clean:
 	@echo Clean build folders
-	@rm -rf $(TMP_DIR) $(LIB_DIR) $(OUT_DIR)
+	@rm -rf $(TMP_DIR) $(LIB_DIR)
