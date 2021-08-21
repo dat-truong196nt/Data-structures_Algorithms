@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+    Array:
+        build: .
+        image: data_struct
+        container_name: Array
+        volumes:
+            - "../Array:/app"
+    Hash_table:
+        depends_on:
+            - Array
+        image: data_struct
+        container_name: Hash_table
+        volumes:
+            - "../Array:/app"
