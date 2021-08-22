@@ -70,8 +70,7 @@ _node<T> *myLinkedList<T>::insert(int pos, const T& value) {
 		}
 	}
 
-	throw "pos is outside list";
-	return NULL;
+	return append(value);
 }
 
 template <typename T>
