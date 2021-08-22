@@ -10,7 +10,8 @@ int main()
 	list.prepend("Truong");
 	list.prepend("Quoc");
 	list.prepend("Dat");
-	list.insert(4, "ok");
+	list.insert(8, "ok");
+	list.remove(2);
 	list.print();
 	} catch (char const *msg) {
 		cerr << msg << endl;

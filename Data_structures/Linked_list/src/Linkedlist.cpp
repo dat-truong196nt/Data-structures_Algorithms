@@ -56,11 +56,40 @@ _node<T> *myLinkedList<T>::prepend(const T& value) {
 }
 
 template <typename T>
+void myLinkedList<T>::remove(int pos) {
+	if (pos < 0) return;
+
+	if (pos == 0) {
+		if (this->head == this->tail) {
+			delete this->head;
+			this->head = NULL;
+			this->tail = NULL;
+		} else {
+			_node<T> *head = this->head;
+			this->head = this->head->next;
+			delete head;
+			return;
+		}
+	}
+
+	_node<T> *prev = NULL;
+	for (_node<T> *iter = this->head; iter != NULL ; iter=iter->next) {
+		if (!(pos--)) {
+			prev->next = iter->next;
+			delete iter;
+			return;
+		}
+		prev = iter;
+	}
+
+}
+
+template <typename T>
 _node<T> *myLinkedList<T>::insert(int pos, const T& value) {
 	if (pos == 0)
 		return prepend(value);
 
-	for (_node<T> *iter = this->head; iter ; iter=iter->next) {
+	for (_node<T> *iter = this->head; iter !=NULL ; iter=iter->next) {
 		if (!(--pos)) {
 			_node<T> *node = new _node<T>();
 			node->value = value;

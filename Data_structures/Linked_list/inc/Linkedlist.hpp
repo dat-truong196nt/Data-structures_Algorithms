@@ -27,6 +27,7 @@ public:
 	_node<T> *append(const T& value);
 	_node<T> *prepend(const T& value);
 	_node<T> *insert(int pos, const T& value);
+	void remove(int pos);
 	void print();
 };
 
