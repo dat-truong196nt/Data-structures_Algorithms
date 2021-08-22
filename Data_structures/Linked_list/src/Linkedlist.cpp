@@ -62,7 +62,6 @@ _node<T> *myLinkedList<T>::insert(int pos, const T& value) {
 
 	for (_node<T> *iter = this->head; iter ; iter=iter->next) {
 		if (!(--pos)) {
-			cout << "here" << endl;
 			_node<T> *node = new _node<T>();
 			node->value = value;
 			node->next = iter->next;
@@ -71,7 +70,7 @@ _node<T> *myLinkedList<T>::insert(int pos, const T& value) {
 		}
 	}
 
-	// throw "pos (" + to_string(pos) + ") is outside list";
+	throw "pos is outside list";
 	return NULL;
 }
 

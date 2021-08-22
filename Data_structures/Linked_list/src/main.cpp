@@ -12,8 +12,8 @@ int main()
 	list.prepend("Dat");
 	list.insert(4, "ok");
 	list.print();
-	} catch (char *msg) {
-		cout << msg << endl;
+	} catch (char const *msg) {
+		cerr << msg << endl;
 	}
 	return 0;
 }
