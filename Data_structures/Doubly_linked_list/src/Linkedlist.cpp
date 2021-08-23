@@ -67,9 +67,9 @@ void myLinkedList<T>::remove(int pos) {
 			this->head = NULL;
 			this->tail = NULL;
 		} else {
-			_node<T> *head = this->head;
 			this->head = this->head->next;
-			delete head;
+			delete this->head->prev;
+			this->head->prev = NULL;
 			return;
 		}
 	}
