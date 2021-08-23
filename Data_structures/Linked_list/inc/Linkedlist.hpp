@@ -20,6 +20,7 @@ class myLinkedList
 private:
 	_node<T> *head;
 	_node<T> *tail;
+	void _switchHeadTail();
 
 public:
 	myLinkedList();
@@ -29,6 +30,7 @@ public:
 	_node<T> *insert(int pos, const T& value);
 	void remove(int pos);
 	void print();
+	void reverse();
 };
 
 #endif
