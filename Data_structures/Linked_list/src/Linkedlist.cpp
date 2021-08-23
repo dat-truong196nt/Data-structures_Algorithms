@@ -1,6 +1,13 @@
 #include "../inc/Linkedlist.hpp"
 
 template <typename T>
+void myLinkedList<T>::_switchHeadTail() {
+	_node<T> *head = this->head;
+	this->head = this->tail;
+	this->tail = head;
+}
+
+template <typename T>
 myLinkedList<T>::myLinkedList() {
 	this->head = NULL;
 	this->tail = NULL;
@@ -110,6 +117,22 @@ void myLinkedList<T>::print() {
 		cout << node->value << " ";
 	} while ((node = node->next) != NULL);
 	cout << endl;
+}
+
+
+template <typename T>
+void myLinkedList<T>::reverse() {
+	_switchHeadTail();
+	_node<T> *curr = this->tail;
+	_node<T> *prev = curr->next;
+	_node<T> *next = NULL;
+
+	do {
+		prev = curr->next;
+		curr->next = next;
+		next = curr;
+		curr = prev;
+	} while(curr != NULL);
 }
 
 template class myLinkedList<int>;

@@ -13,6 +13,8 @@ int main()
 	list.insert(2, "ok");
 	list.remove(2);
 	list.print();
+	list.reverse();
+	list.print();
 	list.printRevert();
 	} catch (char const *msg) {
 		cerr << msg << endl;
