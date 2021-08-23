@@ -22,6 +22,7 @@ private:
 	_node<T> *head;
 	_node<T> *tail;
 	void _switchHeadTail();
+	bool _empty();
 
 public:
 	myLinkedList();

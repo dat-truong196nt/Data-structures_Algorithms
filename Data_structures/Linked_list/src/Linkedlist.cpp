@@ -1,6 +1,11 @@
 #include "../inc/Linkedlist.hpp"
 
 template <typename T>
+bool myLinkedList<T>::_empty() {
+	return !this->head;
+}
+
+template <typename T>
 void myLinkedList<T>::_switchHeadTail() {
 	_node<T> *head = this->head;
 	this->head = this->tail;
@@ -111,6 +116,9 @@ _node<T> *myLinkedList<T>::insert(int pos, const T& value) {
 
 template <typename T>
 void myLinkedList<T>::print() {
+	if (!_empty())
+		return;
+
 	_node<T> *node = this->head;
 	do
 	{
@@ -122,6 +130,9 @@ void myLinkedList<T>::print() {
 
 template <typename T>
 void myLinkedList<T>::reverse() {
+	if (_empty())
+		return;
+
 	_switchHeadTail();
 	_node<T> *curr = this->tail;
 	_node<T> *prev = curr->next;
