@@ -77,11 +77,11 @@ void myLinkedList<T>::remove(int pos) {
 	_node<T> *prev = NULL;
 	for (_node<T> *iter = this->head; iter != NULL ; iter=iter->next) {
 		if (!(pos--)) {
-			prev->next = iter->next;
+			iter->prev->next = iter->next;
+			iter->next->prev = iter->prev;
 			delete iter;
 			return;
 		}
-		prev = iter;
 	}
 
 }

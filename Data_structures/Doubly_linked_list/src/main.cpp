@@ -11,7 +11,7 @@ int main()
 	list.prepend("Quoc");
 	list.prepend("Dat");
 	list.insert(2, "ok");
-	// list.remove(2);
+	list.remove(2);
 	list.print();
 	list.printRevert();
 	} catch (char const *msg) {
