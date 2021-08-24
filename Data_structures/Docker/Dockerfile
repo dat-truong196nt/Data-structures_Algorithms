@@ -1,6 +1,7 @@
-FROM alpine
+FROM ubuntu
 
-RUN apk add --no-cache g++ make
+RUN apt update && apt install -y build-essential
+
 WORKDIR /app/build
 
 CMD ["make"]
