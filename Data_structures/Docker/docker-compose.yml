@@ -27,3 +27,10 @@ services:
         container_name: Doubly_linked_list
         volumes:
             - "../Doubly_linked_list:/app"
+    Stack:
+        depends_on:
+            - Array
+        image: data_struct
+        container_name: Stack
+        volumes:
+            - "../Stack:/app"
