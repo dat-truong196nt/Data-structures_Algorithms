@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	try {
-		myStack<string> list;
+		linkedListStack<string> list;
 		list.push("Truong");
 		list.push("Quoc");
 		list.push("Dat");

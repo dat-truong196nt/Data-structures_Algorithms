@@ -18,9 +18,8 @@ template <typename T>
 class _stack
 {
 private:
-	_node<T> *head;
-	_node<T> *tail;
-	void _switchHeadTail();
+	_node<T> *bottom;
+	_node<T> *top;
 	bool _empty();
 
 public:
@@ -33,6 +32,6 @@ public:
 };
 
 template <typename T>
-using myStack = class _stack<T>;
+using linkedListStack = class _stack<T>;
 
 #endif

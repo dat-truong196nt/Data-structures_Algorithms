@@ -2,29 +2,22 @@
 
 template <typename T>
 bool _stack<T>::_empty() {
-	return !this->head;
-}
-
-template <typename T>
-void _stack<T>::_switchHeadTail() {
-	_node<T> *head = this->head;
-	this->head = this->tail;
-	this->tail = head;
+	return !this->bottom;
 }
 
 template <typename T>
 _stack<T>::_stack() {
-	this->head = NULL;
-	this->tail = NULL;
+	this->bottom = NULL;
+	this->top = NULL;
 }
 
 template <typename T>
 _stack<T>::~_stack() {
-	if (this->head == NULL)
+	if (this->top == NULL)
 		return;
 
-	_node<T> *curr = this->head;
-	_node<T> *next = this->head->next;
+	_node<T> *curr = this->top;
+	_node<T> *next = this->top->next;
 	while (next)
 	{
 		delete(curr);
@@ -37,14 +30,13 @@ template <typename T>
 _node<T> *_stack<T>::push(const T& value) {
 	_node<T> *node = new _node<T>();
 	node->value = value;
-	node->next = NULL;
+	node->next = this->top;
 
 	if (_empty()) {
-		this->head = node;
-		this->tail = node;
+		this->bottom = node;
+		this->top = node;
 	} else {
-		this->tail->next = node;
-		this->tail = node;
+		this->top = node;
 	}
 
 	return node;
@@ -55,23 +47,21 @@ void _stack<T>::pop() {
 	if (_empty())
 		return;
 
-	if (this->head == this->tail) {
-		delete this->head;
-		this->head = NULL;
-		this->tail = NULL;
+	if (this->bottom == this->top) {
+		delete this->bottom;
+		this->bottom = NULL;
+		this->top = NULL;
 		return;
 	}
 
-	_node<T> *vLastNode = NULL;
-	for (vLastNode = this->head; vLastNode->next != this->tail; vLastNode = vLastNode->next);
-	delete this->tail;
-	vLastNode->next = NULL;
-	this->tail = vLastNode;
+	_node<T> *nextTop = this->top->next;
+	delete this->top;
+	this->top = nextTop;
 }
 
 template <typename T>
 T _stack<T>::seek() {
-	return this->tail->value;
+	return this->top->value;
 }
 
 template <typename T>
@@ -79,7 +69,7 @@ void _stack<T>::print() {
 	if (_empty())
 		return;
 
-	_node<T> *node = this->head;
+	_node<T> *node = this->top;
 	do
 	{
 		cout << node->value << " ";
