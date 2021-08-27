@@ -34,3 +34,10 @@ services:
         container_name: Stack
         volumes:
             - "../Stack:/app"
+    Queue:
+        depends_on:
+            - Array
+        image: data_struct
+        container_name: Queue
+        volumes:
+            - "../Queue:/app"
