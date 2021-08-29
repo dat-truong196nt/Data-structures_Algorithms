@@ -15,6 +15,24 @@ myTree<T>::~myTree() {
 }
 
 template <typename T>
+bool myTree<T>::lookup(const T& value) {
+	node<T> *_node = this->_root;
+	if (_empty())
+		return false;
+
+	while (_node)
+	{
+		if (value > _node->value)
+			_node = _node->right;
+		else if (value < _node->value)
+			_node = _node->left;
+		else
+			return true;
+	}
+	return false;
+}
+
+template <typename T>
 void myTree<T>::remove(const T& value) {
 }
 

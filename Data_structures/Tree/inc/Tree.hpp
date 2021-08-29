@@ -36,6 +36,7 @@ public:
 	~myTree();
 	void insert(const T& value);
 	void remove(const T& value);
+	bool lookup(const T& value);
 	node<T> *getRoot();
 	void print();
 };
