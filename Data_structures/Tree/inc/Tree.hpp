@@ -7,36 +7,28 @@
 using namespace std;
 
 template <typename T>
-struct node {
-	struct node *left;
-	struct node *right;
-	T value;
-};
-
-template <typename T>
 class nodeClass {
-private:
-	struct node<T> *node;
 public:
+	class nodeClass *left;
+	class nodeClass *right;
+	T value;
 	nodeClass(const T& value) {
-		node = new struct node<T>();
-		node->left = NULL;
-		node->right = NULL;
-		node->value = value;
+		this->left = NULL;
+		this->right = NULL;
+		this->value = value;
 	}
 	~nodeClass() {
-		delete node;
 	}
 };
 
 template <typename T>
-using _node = struct nodeClass<T>;
+using node = struct nodeClass<T>;
 
 template <typename T>
 class myTree
 {
 private:
-	_node<T> *root;
+	node<T> *_root;
 	bool _empty();
 
 public:
@@ -44,7 +36,11 @@ public:
 	~myTree();
 	void insert(const T& value);
 	void remove(const T& value);
+	node<T> *getRoot();
 	void print();
 };
+
+template <typename T>
+using binaryTree = class myTree<T>;
 
 #endif
