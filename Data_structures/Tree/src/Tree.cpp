@@ -34,6 +34,76 @@ bool myTree<T>::lookup(const T& value) {
 
 template <typename T>
 void myTree<T>::remove(const T& value) {
+	// get prev, node matching value;
+	pair<node<T> *, node<T> *> _node = make_pair(nullptr, nullptr);
+	_node.second = this->_root;
+	if (_empty())
+		return;
+
+	while (_node.second)
+	{
+		if (value > _node.second->value) {
+			_node.first = _node.second;
+			_node.second = _node.second->right;
+		}
+		else if (value < _node.second->value) {
+			_node.first = _node.second;
+			_node.second = _node.second->left;
+		}
+		else
+			break;
+	}
+
+	if (!_node.second)
+		return;
+	if (_node.first) cout << _node.first->value << endl; // TODO: remove this
+	if (_node.second) cout << _node.second->value << endl; // TODO: remove this
+
+	// find replace node
+	pair<node<T> *, node<T> *> _replaceNode = make_pair(nullptr, nullptr);
+	// If right not null -> find node with value = min
+	if (_node.second->right) {
+		_replaceNode.first = _node.second;
+		_replaceNode.second = _replaceNode.first->right;
+		while (_replaceNode.second->right || _replaceNode.second->left) {
+			_replaceNode.first = _replaceNode.second;
+			_replaceNode.second = _replaceNode.second->left ? _replaceNode.second->left : _replaceNode.second->right;
+		}
+	}
+	// if left not null -> find node with value = max
+	else if (_node.second->left) {
+		_replaceNode.first = _node.second;
+		_replaceNode.second = _replaceNode.first->left;
+		while (_replaceNode.second->right || _replaceNode.second->left) {
+			_replaceNode.first = _replaceNode.second;
+			_replaceNode.second = _replaceNode.second->right ? _replaceNode.second->right : _replaceNode.second->left;
+		}
+	}
+	if (_replaceNode.first) cout << _replaceNode.first->value << endl; // TODO: remove this
+	if (_replaceNode.second) cout << _replaceNode.second->value << endl; // TODO: remove this
+
+	// replace with found node.
+	if (!_replaceNode.first && !_replaceNode.second) {
+		if (_node.first->right == _node.second) _node.first->right = nullptr;
+		else _node.first->left = nullptr;
+	}
+	else {
+		if (_replaceNode.first->right == _replaceNode.second) _replaceNode.first->right = nullptr;
+		else _replaceNode.first->left = nullptr;
+
+		if (!_node.first) {
+			this->_root = _replaceNode.second;
+		}
+		else {
+			if (_node.first->right == _node.second) _node.first->right = _replaceNode.second;
+			else _node.first->left = _replaceNode.second;
+		}
+
+		_replaceNode.second->left = _node.second->left;
+		_replaceNode.second->right = _node.second->right;
+	}
+	delete _node.second;
+	cout << endl;
 }
 
 template <typename T>

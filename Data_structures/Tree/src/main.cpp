@@ -14,8 +14,8 @@ int main()
 		myTree.insert(170);
 		myTree.insert(15);
 		myTree.insert(1);
-		cout << myTree.getRoot()->right->right->value;
-		cout << myTree.getRoot()->left->left->value;
+		myTree.remove(9);
+		myTree.remove(20);
 	} catch (char const *msg) {
 		cerr << msg << endl;
 	}
