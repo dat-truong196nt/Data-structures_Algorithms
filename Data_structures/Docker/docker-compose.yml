@@ -41,3 +41,10 @@ services:
         container_name: Queue
         volumes:
             - "../Queue:/app"
+    Queue:
+        depends_on:
+            - Array
+        image: data_struct
+        container_name: Tree
+        volumes:
+            - "../Tree:/app"
