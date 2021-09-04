@@ -17,6 +17,7 @@ myGraph::~myGraph() {
 void myGraph::addVertex(const int& value) {
 	unordered_set<int> *adjacency = new unordered_set<int>();
 	this->adjacentList->insert(make_pair(value, adjacency));
+	this->numOfNodes++;
 }
 
 void myGraph::addEdge(const int& nodeValue1st, const int& nodeValue2nd) {
