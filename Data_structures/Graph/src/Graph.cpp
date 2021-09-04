@@ -29,7 +29,7 @@ void myGraph::addEdge(const int& nodeValue1st, const int& nodeValue2nd) {
 
 void myGraph::print() {
 	for (auto node: *this->adjacentList) {
-		cout << node.first << ":";
+		cout << node.first << "-->";
 		for (auto adjacency: *node.second)
 			cout << " " << adjacency;
 		cout << endl;
