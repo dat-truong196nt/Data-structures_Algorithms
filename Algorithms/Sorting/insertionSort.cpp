@@ -11,7 +11,9 @@ int main() {
 	};
 
 	auto sorting = [&swap] (vector<int> &vect) {
-		for (int i = 0; i < vect.size(); i++) {
+		for (int i = 1; i < vect.size(); i++) {
+			if (vect.at(i) > vect.at(i - 1))
+				continue;
 			for (int j = 0; j < i; j++) {
 				if (vect.at(i) < vect.at(j)) {
 					vect.insert(vect.begin() + j, vect.at(i));
