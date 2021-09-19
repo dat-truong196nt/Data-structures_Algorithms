@@ -108,13 +108,67 @@ vector<T> myTree<T>::breadthFirstSearchRecursiveV2(vector<node<T> *> nodeList, v
 		return valueList;
 
 	valueList.push_back(nodeList.at(0)->value);
-		if (nodeList.at(0)->left)
-			nodeList.push_back(nodeList.at(0)->left);
-		if (nodeList.at(0)->right)
-			nodeList.push_back(nodeList.at(0)->right);
+	if (nodeList.at(0)->left)
+		nodeList.push_back(nodeList.at(0)->left);
+	if (nodeList.at(0)->right)
+		nodeList.push_back(nodeList.at(0)->right);
 	nodeList.erase(nodeList.begin());
 
 	return this->breadthFirstSearchRecursiveV2(nodeList, valueList);
+}
+
+template <typename T>
+vector<T> myTree<T>::DFSPostOrder() {
+	vector<T> valueList;
+	return _DFSPostOrder(this->_root, valueList);
+}
+
+template <typename T>
+vector<T> myTree<T>::_DFSPostOrder(node<T> *node, vector<T> &valueList) {
+	// nodeList push node
+	valueList.push_back(node->value);
+	// nodeList push func(left, nodeList)
+	if (node->left) _DFSPostOrder(node->left, valueList);
+	// nodeList push right(right, nodeListleft)
+	if (node->right) _DFSPostOrder(node->right, valueList);
+
+	return valueList;
+}
+
+template <typename T>
+vector<T> myTree<T>::DFSPreOrder() {
+	vector<T> valueList;
+	return _DFSPreOrder(this->_root, valueList);
+}
+
+template <typename T>
+vector<T> myTree<T>::_DFSPreOrder(node<T> *node, vector<T> &valueList) {
+	// nodeList push func(left, nodeList)
+	if (node->left) _DFSPreOrder(node->left, valueList);
+	// nodeList push right(right, nodeListleft)
+	if (node->right) _DFSPreOrder(node->right, valueList);
+	// nodeList push node
+	valueList.push_back(node->value);
+
+	return valueList;
+}
+
+template <typename T>
+vector<T> myTree<T>::DFSInOrder() {
+	vector<T> valueList;
+	return _DFSInOrder(this->_root, valueList);
+}
+
+template <typename T>
+vector<T> myTree<T>::_DFSInOrder(node<T> *node, vector<T> &valueList) {
+	// nodeList push func(left, nodeList)
+	if (node->left) _DFSInOrder(node->left, valueList);
+	// nodeList push node
+	valueList.push_back(node->value);
+	// nodeList push right(right, nodeListleft)
+	if (node->right) _DFSInOrder(node->right, valueList);
+
+	return valueList;
 }
 
 template <typename T>

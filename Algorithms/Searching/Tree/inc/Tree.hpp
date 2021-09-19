@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -32,6 +33,9 @@ private:
 	node<T> *_root;
 	bool _empty();
 	vector<T> _breadthFirstSearchIterate(vector<node<T> *> &parent);
+	vector<T> _DFSInOrder(node<T> *node, vector<T> &valueList);
+	vector<T> _DFSPreOrder(node<T> *node, vector<T> &valueList);
+	vector<T> _DFSPostOrder(node<T> *node, vector<T> &valueList);
 
 public:
 	myTree();
@@ -43,6 +47,9 @@ public:
 	void breadthFirstSearchV2();
 	void breadthFirstSearchRecursive(vector<node<T> *> &nodeList, int _index);
 	vector<T> breadthFirstSearchRecursiveV2(vector<node<T> *> nodeList, vector<T> valueList);
+	vector<T> DFSInOrder();
+	vector<T> DFSPreOrder();
+	vector<T> DFSPostOrder();
 	node<T> *getRoot();
 	void print();
 };

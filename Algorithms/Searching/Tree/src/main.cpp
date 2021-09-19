@@ -14,8 +14,12 @@ int main()
 		myTree.insert(170);
 		myTree.insert(15);
 		myTree.insert(1);
-		vector<int> valueList = myTree.breadthFirstSearchRecursiveV2({myTree.getRoot()}, {});
-		for (auto item: valueList)
+		myTree.insert(30);
+		myTree.insert(7);
+		myTree.insert(3);
+		myTree.insert(120);
+		vector<int> output = myTree.DFSPostOrder();
+		for (auto item: output)
 			cout << item << " ";
 		cout << endl;
 	} catch (char const *msg) {
