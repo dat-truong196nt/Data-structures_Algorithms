@@ -18,7 +18,7 @@ int main()
 		myTree.insert(7);
 		myTree.insert(3);
 		myTree.insert(120);
-		vector<int> output = myTree.DFSPostOrder();
+		vector<int> output = myTree.breadthFirstSearchI();
 		for (auto item: output)
 			cout << item << " ";
 		cout << endl;

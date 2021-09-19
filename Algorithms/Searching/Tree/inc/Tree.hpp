@@ -36,6 +36,7 @@ private:
 	vector<T> _DFSInOrder(node<T> *node, vector<T> &valueList);
 	vector<T> _DFSPreOrder(node<T> *node, vector<T> &valueList);
 	vector<T> _DFSPostOrder(node<T> *node, vector<T> &valueList);
+	vector<T> _breadthFirstSearchR(vector<node<T> *> nodeList, vector<T> valueList);
 
 public:
 	myTree();
@@ -43,10 +44,8 @@ public:
 	void insert(const T& value);
 	void remove(const T& value);
 	bool lookup(const T& value);
-	void breadthFirstSearchV1();
-	void breadthFirstSearchV2();
-	void breadthFirstSearchRecursive(vector<node<T> *> &nodeList, int _index);
-	vector<T> breadthFirstSearchRecursiveV2(vector<node<T> *> nodeList, vector<T> valueList);
+	vector<T> breadthFirstSearchI();
+	vector<T> breadthFirstSearchR();
 	vector<T> DFSInOrder();
 	vector<T> DFSPreOrder();
 	vector<T> DFSPostOrder();

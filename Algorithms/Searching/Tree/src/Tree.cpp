@@ -33,88 +33,41 @@ bool myTree<T>::lookup(const T& value) {
 }
 
 template <typename T>
-vector<T> myTree<T>::_breadthFirstSearchIterate(vector<node<T> *> &parent) {
-	vector<node<T> *> nextParent;
-	vector<T> value;
+vector<T> myTree<T>::breadthFirstSearchI() {
+	vector<node<T> *> nodeList = {this->_root};
+	vector<T> valueList;
 
-	for (auto item: parent) {
-		if (item->left) {
-			nextParent.push_back(item->left);
-			value.push_back(item->left->value);
-		}
-		if (item->right) {
-			nextParent.push_back(item->right);
-			value.push_back(item->right->value);
-		}
+	while (!nodeList.empty()) {
+		if (nodeList.at(0)->left) nodeList.push_back(nodeList.at(0)->left);
+		if (nodeList.at(0)->right) nodeList.push_back(nodeList.at(0)->right);
+		valueList.push_back(nodeList.at(0)->value);
+		nodeList.erase(nodeList.begin());
 	}
 
-	parent = nextParent;
-	return value;
+	return valueList;
+}
+
+
+template <typename T>
+vector<T> myTree<T>::breadthFirstSearchR() {
+	return _breadthFirstSearchR({this->_root}, {});
 }
 
 template <typename T>
-void myTree<T>::breadthFirstSearchV1() {
-	// parent = root
-	vector<node<T> *> parent;
-	vector<T> value;
-	parent.push_back(this->_root);
-	value.push_back(this->_root->value);
-	// find next parent
-	while (parent.size()) {
-		vector<T> child = _breadthFirstSearchIterate(parent);
-		value.insert(value.end(), child.begin(), child.end());
-	}
-	// print child value
-	for (auto item: value)
-		cout << item << " ";
-	cout << endl;
-}
-template <typename T>
-void myTree<T>::breadthFirstSearchV2() {
-	vector<node<T> *> nodeList;
-	int _index = 0;
-	nodeList.push_back(this->_root);
-
-	while (_index < nodeList.size()) {
-		if (nodeList.at(_index)->left)
-			nodeList.push_back(nodeList.at(_index)->left);
-		if (nodeList.at(_index)->right)
-			nodeList.push_back(nodeList.at(_index)->right);
-		_index++;
-	}
-
-	for (auto item: nodeList)
-		cout << item->value << " ";
-	cout << endl;
-}
-
-template <typename T>
-void myTree<T>::breadthFirstSearchRecursive(vector<node<T> *> &nodeList, int _index) {
-	// Ending point (left && right == empty)
-	if (_index >= nodeList.size())
-		return;
-
-	// push left, push right
-	if (nodeList.at(_index)->left) nodeList.push_back(nodeList.at(_index)->left);
-	if (nodeList.at(_index)->right) nodeList.push_back(nodeList.at(_index)->right);
-
-	// push recursive left, right
-	breadthFirstSearchRecursive(nodeList, ++_index);
-}
-template <typename T>
-vector<T> myTree<T>::breadthFirstSearchRecursiveV2(vector<node<T> *> nodeList, vector<T> valueList) {
-
+vector<T> myTree<T>::_breadthFirstSearchR(vector<node<T> *> nodeList, vector<T> valueList) {
 	if (nodeList.empty())
 		return valueList;
 
-	valueList.push_back(nodeList.at(0)->value);
-	if (nodeList.at(0)->left)
-		nodeList.push_back(nodeList.at(0)->left);
-	if (nodeList.at(0)->right)
-		nodeList.push_back(nodeList.at(0)->right);
+	node<T> *currNode = nodeList.at(0);
+	node<T> *leftNode = nodeList.at(0)->left;
+	node<T> *rightNode = nodeList.at(0)->right;
+
+	if (leftNode) nodeList.push_back(leftNode);
+	if (rightNode) nodeList.push_back(rightNode);
+	valueList.push_back(currNode->value);
 	nodeList.erase(nodeList.begin());
 
-	return this->breadthFirstSearchRecursiveV2(nodeList, valueList);
+	return _breadthFirstSearchR(nodeList, valueList);
 }
 
 template <typename T>
